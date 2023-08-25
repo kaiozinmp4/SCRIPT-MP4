@@ -1,5 +1,68 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/kaiozinmp4/kaiodev/main/kai",true))()
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+local Window = Rayfield:CreateWindow({
+    Name = "Mp4 Hub",
+    LoadingTitle = "Loading Mp4 Hub",
+    LoadingSubtitle = "by kaiozin.mp4",
+    ConfigurationSaving = {
+       Enabled = true,
+       FolderName = nil, -- Create a custom folder for your hub/game
+       FileName = "Big Hub"
+    },
+    Discord = {
+       Enabled = true,
+       Invite = "https://discord.gg/eTBAFsGt", -- The Discord invite code, do not include discord.gg/. E.g. https://discord.gg/Tw5gEMPp would be
+       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+    },
+    KeySystem = true, -- Set this to true to use our key system
+    KeySettings = { 
+       Subtitle = "Key System",
+       Note = "GET KEY IN DISCORD",
+       FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+       SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+       Key = {"kaibest"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+    }
+ })
 
+ local Tab = Window:CreateTab("Main", 4483362458) -- Title, Image
 
-IMPORTANTE: NÃO COMPARTILHER ESSE SCRIPT COM NINGUÉM, CASO COMPARTILHR VOCÊ PERDERÁ ELE PERMANENTEMENTE!
+ Rayfield:Notify({
+    Title = "Welcome Mp4 Hub ",
+    Content = "this script was created by kai"
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Okay!",
+          Callback = function()
+          print("The user tapped Okay!")
+       end
+    },
+ },
+ })
+
+ local Button = Tab:CreateButton({
+    Name = "Star Dataloss",
+    Callback = function()
+      game:GetService("ReplicatedStorage").Remote.SetDungeonSetting:FireServer("Theme",  Options[Options.Current])
+      TextField:SetText("Started")  
+    end,
+ })
+
+ local Button = Tab:CreateButton({
+   Name = "Star Undataloss",
+   Callback = function()
+      game:GetService("ReplicatedStorage").Remote.SetDungeonSetting:FireServer("Theme", Options.Undo)
+      TextField:SetText("Undone")
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Rejoin Server",
+   Callback = function()
+      game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+   end,
+})
+
+end
